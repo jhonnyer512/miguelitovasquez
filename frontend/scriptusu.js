@@ -46,9 +46,9 @@ function listar(){
       redirect: "follow"
     };
     let ndoc = document.getElementById("numdoc").value;
-    //usuarios?id=user124
+    //usuarios?id=user123
          //https://proyectofinaldsws.netlify.app/.netlify/functions/usuarios
-    fetch("https://ejemplodesarrollosoft.netlify.app/"+ndoc, requestOptions)
+    fetch("https://app.netlify.com/projects/keen-liger-bcb9a9/configuration/deploys#preview-server-settings"+ndoc, requestOptions)
       .then((response) =>
         response.text())
       .then((result) =>
