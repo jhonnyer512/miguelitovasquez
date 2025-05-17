@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+<script type="module">
+  // Configura tu Firebase aquí
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB-onT7XQmGzf-j16OszKICE9Xm8XC_Ioo",
+    authDomain: "project-a18b2.firebaseapp.com",
+    databaseURL: "https://project-a18b2-default-rtdb.firebaseio.com",
+    projectId: "project-a18b2",
+    storageBucket: "project-a18b2.firebasestorage.app",
+    messagingSenderId: "833529947041",
+    appId: "1:833529947041:web:1055cdf35c63403e29a1e0",
+    measurementId: "G-XSYDRWELLP"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Ejemplo: guardar un usuario
+  async function guardarUsuario() {
+    const ref = doc(db, "usuarios", "123456");
+    await setDoc(ref, {
+      nombre: "Miguel",
+      correo: "miguel@example.com"
+    });
+    alert("Usuario guardado!");
+  }
+
+  // Llamar al guardarUsuario cuando desees
+  window.guardarUsuario = guardarUsuario;
+</script>
+
   <meta charset="UTF-8">
   <title>Gestión de Usuarios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
