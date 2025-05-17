@@ -6,7 +6,6 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
 
 <script type="module">
-  // Configura tu Firebase aquí
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -23,20 +22,48 @@ const firebaseConfig = {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  
+</script>
+<script>
+  // Función para guardar un usuario
+  function guardarUsuario() {
+    const dni = document.getElementById('dni').value;
+    const nombre = document.getElementById('nombre').value;
+    const apellidos = document.getElementById('apellidos').value;
+    const correo = document.getElementById('correo').value;
 
-  // Ejemplo: guardar un usuario
-  async function guardarUsuario() {
-    const ref = doc(db, "usuarios", "123456");
-    await setDoc(ref, {
-      nombre: "Miguel",
-      correo: "miguel@example.com"
+    db.collection("usuarios").doc(dni).set({
+      nombre: nombre,
+      apellidos: apellidos,
+      correo: correo
+    })
+    .then(() => {
+      alert("Usuario guardado exitosamente.");
+    })
+    .catch((error) => {
+      console.error("Error al guardar el usuario: ", error);
     });
-    alert("Usuario guardado!");
   }
 
-  // Llamar al guardarUsuario cuando desees
-  window.guardarUsuario = guardarUsuario;
+  // Función para listar un usuario
+  function listarUsuario() {
+    const dni = document.getElementById('numdoc').value;
+
+    db.collection("usuarios").doc(dni).get()
+    .then((doc) => {
+      if (doc.exists) {
+        const usuario = doc.data();
+        document.getElementById('rta').innerText = `Nombre: ${usuario.nombre} ${usuario.apellidos}, Correo: ${usuario.correo}`;
+      } else {
+        document.getElementById('rta').innerText = "No se encontró el usuario.";
+      }
+    })
+    .catch((error) => {
+      console.error("Error al obtener el usuario: ", error);
+    });
+  }
 </script>
+
 
   <meta charset="UTF-8">
   <title>Gestión de Usuarios</title>
