@@ -1,46 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<script type="text/javascript" src="./frontend/scriptusu.js"></script>
+  <meta charset="UTF-8">
+  <title>Gestión de Usuarios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.4rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    input[type="submit"] {
+      margin-top: 1.5rem;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #4338ca;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+
+    #rta {
+      margin-top: 1rem;
+      background-color: #f1f5f9;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+  </style>
+  <script type="module" src="./frontend/scriptusu.js"></script>
 </head>
 <body>
 
-<h1>Adicionar Usuario</h1>
-<div>
-<form id="adicionarEstudiante">
-<div>
-<label for="dni">Documento de identidad:</label>
-<input type="text" id="dni" placeHolder="" value="000000">
-<br>
+  <div class="container">
+    <h1>Adicionar Usuario</h1>
+    <form id="adicionarEstudiante">
+      <label for="dni">Documento de identidad:</label>
+      <input type="text" id="dni" value="000000" required>
 
-            <label for="nombre">Nombres:</label>
-<input type="text" id="nombre" placeHolder="">
-<br>
+      <label for="nombre">Nombres:</label>
+      <input type="text" id="nombre" required>
 
-            <label for="apellidos">Apellidos:</label>
-<input type="text" id="apellidos" placeHolder="">
-<br>
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" required>
 
-            <label for="correo">Email:</label>
-<input type="text" id="correo" placeHolder="" value="">
-<br>
-<br>
-<br>
-<input type="submit" onclick="guardar()" value="Aceptar">
-</div>
-</form>
+      <label for="correo">Email:</label>
+      <input type="email" id="correo" required>
 
-</div>
-<h1>Listar un usuario</h1>
-<div>
-<form id="listarEstudiantes">
-<label for="numdoc">Nombre del documento</label>
-<input type="text" id="numdoc">
-<p id="rta">Resultado:</p>
-<input type="submit" onclick="listar()" value="Aceptar">
-</form>
-</div>
+      <input type="submit" onclick="guardar()" value="Guardar Usuario">
+    </form>
+
+    <div class="section">
+      <h1>Buscar Usuario</h1>
+      <form id="listarEstudiantes">
+        <label for="numdoc">Documento del Usuario:</label>
+        <input type="text" id="numdoc" required>
+
+        <input type="submit" onclick="listar()" value="Buscar">
+        <div id="rta">Resultado:</div>
+      </form>
+    </div>
+  </div>
 
 </body>
 </html>
